@@ -25,8 +25,15 @@ public class NotesViewModel extends AndroidViewModel {
         return allNotes;
     }
 
+    public Note getNote(int uid){
+        return notesRepo.getNoteById(uid);
+    }
+
     public void insert(Note note) {
         notesRepo.insert(note);
+    }
+    public void update(Note note) {
+        notesRepo.update(note);
     }
 
     public void delete(Note note) {

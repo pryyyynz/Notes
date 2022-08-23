@@ -23,7 +23,7 @@ public class AddActivity extends AppCompatActivity {
         NotesViewModel viewModel = new ViewModelProvider(this).get(NotesViewModel.class);
         setContentView(view);
 
-        binding.fabSave.setOnClickListener(view1 -> {
+        binding.btnSave.setOnClickListener(view1 -> {
             String title = binding.etTitle.getText().toString();
             String body = binding.etBody.getText().toString();
 
@@ -31,9 +31,9 @@ public class AddActivity extends AppCompatActivity {
                 Toast.makeText(this,"No field should be empty",Toast.LENGTH_SHORT).show();
             }else {
                 viewModel.insert(new Note(0,title,body));
+                finish();
             }
 
-            finish();
         });
     }
 }

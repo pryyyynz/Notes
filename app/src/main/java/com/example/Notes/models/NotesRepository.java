@@ -13,7 +13,7 @@ import java.util.List;
 
 public class NotesRepository {
 
-    private NotesDao notesDao;
+    private final NotesDao notesDao;
     private LiveData<List<Note>> allNotes;
 
     NotesRepository(Application application) {
@@ -27,12 +27,14 @@ public class NotesRepository {
     }
 
     void deleteNote(Note note) {
-        notesDao.delete(note);
+        NotesDatabase.databaseWriteExecutor.execute(() ->notesDao.delete(note));
     }
 
     void insert(Note note) {
         NotesDatabase.databaseWriteExecutor.execute(() -> notesDao.insert(note));
-
+    }
+    void update(Note note) {
+        NotesDatabase.databaseWriteExecutor.execute(() -> notesDao.update(note));
     }
 
 
